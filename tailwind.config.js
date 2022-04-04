@@ -28,6 +28,9 @@ module.exports = {
             fontSize: {
                 halfWidth: 'clamp(2rem, 5vw, 10rem)',
             },
+            maxWidth: {
+                track: '25ch',
+            },
             colors: {
                 primary: {
                     // Customize it on globals.css :root

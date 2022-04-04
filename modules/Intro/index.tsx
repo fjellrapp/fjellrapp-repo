@@ -1,10 +1,33 @@
+import { NowPlaying } from '@components/NowPlaying'
+import { IRecentTracks } from '@models/lastfm'
+import fetcher from '@utils/fetcher'
+import { getLatestTracks } from '@utils/querystrings'
+import useSWR from 'swr'
 import HorizontalLine from '../../components/Svgs/HorizontalLine'
+import { BsSpotify } from 'react-icons/bs'
 
 interface IProps {
-    onShouldAnimate: (value: boolean) => void
     scroll: number
+    initialNowPlaying?: IRecentTracks
+    onShouldAnimate: (value: boolean) => void
 }
-export const Intro: React.FC<IProps> = ({ scroll, onShouldAnimate }) => {
+export const Intro: React.FC<IProps> = ({
+    scroll,
+    initialNowPlaying,
+    onShouldAnimate,
+}) => {
+    const { data, error } = useSWR<IRecentTracks>(
+        process.env.NEXT_PUBLIC_LASTFM_KEY
+            ? getLatestTracks(process.env.NEXT_PUBLIC_LASTFM_KEY)
+            : null,
+        fetcher,
+        { fallbackData: initialNowPlaying }
+    )
+    const trackIsCurrentlyPlaying = Boolean(
+        data?.recenttracks?.track?.length &&
+            data.recenttracks.track[0]['@attr']?.nowplaying
+    )
+
     return (
         <div
             className="flex flex-col items-center content-center justify-center h-screen"
@@ -19,17 +42,24 @@ export const Intro: React.FC<IProps> = ({ scroll, onShouldAnimate }) => {
                 scroll={scroll / 5}
             />
 
-            <div className="grid content-center justify-end grid-cols-1 grid-rows-2 gap-5 text-white h- place-items-end">
+            <div className="grid content-center justify-end grid-cols-1 grid-rows-2 text-white gap-7 h- place-items-end">
                 <div className="flex flex-col gap-5 align-start">
                     <h1 className="font-medium tracking-widest">
                         Frontend developer based in Oslo
                     </h1>
                 </div>
 
-                <h2 className="text-sm font-light">
-                    This site is primarily used to display my works and
-                    interests.
-                </h2>
+                {data?.recenttracks?.track?.length && !error && (
+                    <NowPlaying
+                        track={data.recenttracks.track[0]}
+                        afterIcon={
+                            trackIsCurrentlyPlaying ? (
+                                <BsSpotify size="20" />
+                            ) : undefined
+                        }
+                        link
+                    />
+                )}
             </div>
         </div>
     )

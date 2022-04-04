@@ -12,6 +12,9 @@ export interface IRecentTracks {
 }
 
 export interface ITrack {
+    '@attr': {
+        nowplaying: string
+    }
     artist: {
         mbid: string
         '#text': string

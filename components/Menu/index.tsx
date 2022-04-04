@@ -70,7 +70,7 @@ const Menu: React.FC<IProps> = ({ onMenuActive, menuActive, menu }) => {
                     menuActive
                         ? 'flex fixed h-full w-full left-0 top-0 bg-fantasticBg z-[99] '
                         : 'hidden -left-[-600px]',
-                    'items-center justify-end pr-20'
+                    'items-center justify-end pr-1 md:pr-10 lg:pr-20 '
                 )}
                 variants={navVariants}
                 animate={!toggleVariantOpen ? 'slideIn' : 'slideOut'}

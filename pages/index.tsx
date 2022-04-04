@@ -1,26 +1,34 @@
+import AppShell from '@components/AppShell'
+import useScrollPosition from '@hooks/useScrollPosition'
+import { IRecentTracks, ITrack } from '@models/lastfm'
+import { Intro } from '@modules/Intro'
 import type { NextPage } from 'next'
 import { useState } from 'react'
-import AppShell from '../components/AppShell'
-import useScrollPosition from '../lib/hooks/useScrollPosition'
-import { Intro } from '../modules/Intro'
-import { getRecentTracks } from './api/Lastfm'
+import { getLatestTracks } from './api/lastfm'
 
-const Home: NextPage = () => {
-    const [shouldAnimate, setShouldAnimate] = useState(false)
+interface IProps {
+    nowPlaying: IRecentTracks
+}
+const Home: NextPage<IProps> = ({ nowPlaying }) => {
+    const [_, setShouldAnimate] = useState(false)
     const scroll = useScrollPosition()
     return (
         <AppShell>
-            <Intro scroll={scroll} onShouldAnimate={setShouldAnimate} />
+            <Intro
+                scroll={scroll}
+                onShouldAnimate={setShouldAnimate}
+                initialNowPlaying={nowPlaying && nowPlaying}
+            />
         </AppShell>
     )
 }
 
-export async function getServerSideProps(context: any) {
-    getRecentTracks(5)
-    const KEY = process.env.LASTFM_KEY
-    console.log('KEY', KEY)
+export async function getStaticProps() {
+    const nowPlaying = await getLatestTracks()
     return {
-        props: {},
+        props: {
+            nowPlaying,
+        },
     }
 }
 
