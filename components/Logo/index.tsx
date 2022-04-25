@@ -5,7 +5,7 @@ export const Logo = () => {
         <h1
             className={tw(
                 'px-4 py-2',
-                'text-xl font-medium font-primary tracking-widest text-white'
+                'text-xl font-medium font-primary tracking-widest text-black'
             )}
         >
             Fjellrapp

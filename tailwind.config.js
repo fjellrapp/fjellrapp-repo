@@ -8,6 +8,7 @@ function withOpacity(variableName) {
     }
 }
 module.exports = {
+    mode: 'jit',
     content: [
         './pages/**/*.{js,ts,jsx,tsx}',
         './components/**/*.{js,ts,jsx,tsx}',
@@ -41,7 +42,7 @@ module.exports = {
                 fantasticDeepRed: '#180808',
                 fantasticBlue: '#0C6796',
                 fantasticWashedBlue: '#0f78f3',
-                fantasticDeepBlue: '#000318',
+                fantasticDeepBlue: '#00142b9c',
                 fantasticMustard: '#DA9E3B',
                 fantasticOcean: '#50A0A4',
                 fantasticBg: '#000707',

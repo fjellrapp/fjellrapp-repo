@@ -1,7 +1,7 @@
 import AppShell from '@components/AppShell'
 import useScrollPosition from '@hooks/useScrollPosition'
 import { IRecentTracks, ITrack } from '@models/lastfm'
-import { Intro } from '@modules/Intro'
+import { Intro } from '@modules/Sections'
 import type { NextPage } from 'next'
 import { useState } from 'react'
 import { getLatestTracks } from './api/lastfm'

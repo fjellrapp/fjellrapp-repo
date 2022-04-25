@@ -50,9 +50,9 @@ const Menu: React.FC<IProps> = ({ onMenuActive, menuActive, menu }) => {
                     'flex items-center justify-center',
                     'w-10 h-10',
                     'transition-colors rounded-none',
-                    'text-white hover:text-white ',
+                    'text-black hover:text-black ',
                     'z-[100]',
-                    menuActive && 'fixed right-10 text-white hover:text-white'
+                    menuActive && 'fixed right-10 text-black hover:text-black'
                 )}
                 tabIndex={1}
             >
@@ -68,7 +68,7 @@ const Menu: React.FC<IProps> = ({ onMenuActive, menuActive, menu }) => {
             <motion.nav
                 className={tw(
                     menuActive
-                        ? 'flex fixed h-full w-full left-0 top-0 bg-fantasticBg z-[99] '
+                        ? 'flex fixed h-full w-full left-0 top-0 bg-offWhite z-[99] '
                         : 'hidden -left-[-600px]',
                     'items-center justify-end pr-1 md:pr-10 lg:pr-20 '
                 )}
@@ -81,7 +81,7 @@ const Menu: React.FC<IProps> = ({ onMenuActive, menuActive, menu }) => {
                         menu.map((item, index) => (
                             <motion.div
                                 className={tw(
-                                    'p-5 text-4xl font-bold tracking-widest text-white',
+                                    'p-5 text-4xl font-bold tracking-widest text-black',
                                     'relative',
                                     `left-[${(index + 1) * 400}px]`
                                 )}

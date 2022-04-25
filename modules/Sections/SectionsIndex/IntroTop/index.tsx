@@ -1,21 +1,16 @@
 import { NowPlaying } from '@components/NowPlaying'
+import HorizontalLine from '@components/Svgs/HorizontalLine'
 import { IRecentTracks } from '@models/lastfm'
 import fetcher from '@utils/fetcher'
 import { getLatestTracks } from '@utils/querystrings'
-import useSWR from 'swr'
-import HorizontalLine from '../../components/Svgs/HorizontalLine'
 import { BsSpotify } from 'react-icons/bs'
+import useSWR from 'swr'
 
 interface IProps {
     scroll: number
-    initialNowPlaying?: IRecentTracks
-    onShouldAnimate: (value: boolean) => void
+    initialNowPlaying: IRecentTracks | undefined
 }
-export const Intro: React.FC<IProps> = ({
-    scroll,
-    initialNowPlaying,
-    onShouldAnimate,
-}) => {
+export const IntroTop: React.FC<IProps> = ({ scroll, initialNowPlaying }) => {
     const { data, error } = useSWR<IRecentTracks>(
         process.env.NEXT_PUBLIC_LASTFM_KEY
             ? getLatestTracks(process.env.NEXT_PUBLIC_LASTFM_KEY)
@@ -27,13 +22,8 @@ export const Intro: React.FC<IProps> = ({
         data?.recenttracks?.track?.length &&
             data.recenttracks.track[0]['@attr']?.nowplaying
     )
-
     return (
-        <div
-            className="flex flex-col items-center content-center justify-center h-screen"
-            onMouseOver={() => onShouldAnimate(true)}
-            onMouseLeave={() => onShouldAnimate(false)}
-        >
+        <section className="z-10 flex flex-col justify-center h-full p-5 bg-white">
             <HorizontalLine
                 width={50}
                 height={1}
@@ -42,7 +32,7 @@ export const Intro: React.FC<IProps> = ({
                 scroll={scroll / 5}
             />
 
-            <div className="grid content-center justify-end grid-cols-1 grid-rows-2 text-white gap-7 h- place-items-end">
+            <div className="grid content-center justify-end grid-cols-1 grid-rows-2 text-black gap-7 h- place-items-end">
                 <div className="flex flex-col gap-5 align-start">
                     <h1 className="font-medium tracking-widest">
                         Frontend developer based in Oslo
@@ -61,6 +51,6 @@ export const Intro: React.FC<IProps> = ({
                     />
                 )}
             </div>
-        </div>
+        </section>
     )
 }

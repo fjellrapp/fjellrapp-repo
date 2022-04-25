@@ -40,14 +40,14 @@ export const NowPlaying: React.FC<IProps> = ({
         <motion.div
             className={tw('flex flex-col opacity-70')}
             variants={opacity}
-            animate={link && hovered ? 'noOpacity' : 'withOpacity'}
+            animate={link && hovered ? 'withOpacity' : 'noOpacity'}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
-            initial={{ opacity: 0.6 }}
+            initial={{ opacity: 1 }}
         >
             {link ? (
                 <a
-                    href="https://open.spotify.com/user/matssh?si=b0717faccd9a478c"
+                    href={track.url}
                     target="_blank"
                     rel="noreferrer"
                     className={tw('flex flex-row items-center gap-5')}
