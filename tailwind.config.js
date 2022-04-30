@@ -9,6 +9,7 @@ function withOpacity(variableName) {
 }
 module.exports = {
     mode: 'jit',
+    darkMode: 'class',
     content: [
         './pages/**/*.{js,ts,jsx,tsx}',
         './components/**/*.{js,ts,jsx,tsx}',
@@ -49,6 +50,12 @@ module.exports = {
                 offWhite: '#F8F8F8',
                 blueHover: '#0054B7',
                 dark: '#000000',
+            },
+            fontSize: {
+                sm: ['14px', '20px'],
+                base: ['16px', '24px'],
+                lg: ['20px', '28px'],
+                xl: ['24px', '32px'],
             },
             keyframes: {
                 flicker: {

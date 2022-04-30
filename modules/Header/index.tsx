@@ -29,7 +29,8 @@ const Header: React.FC = () => {
             className={tw(
                 'flex content-center items-center justify-between py-4 px-8',
                 'bg-white',
-                'border-solid border-2 border-white'
+                'dark:bg-fantasticBg',
+                'border-solid border-2 border-white dark:border-fantasticBg'
             )}
         >
             <Logo />

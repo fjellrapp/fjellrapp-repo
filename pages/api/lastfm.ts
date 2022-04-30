@@ -7,6 +7,5 @@ const latestTracks = (limit?: number) => {
 }
 
 export const getLatestTracks = async () => {
-    console.log(latestTracks())
     return await (await fetch(latestTracks())).json()
 }

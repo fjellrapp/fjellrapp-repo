@@ -13,11 +13,7 @@ interface IProps {
 export const Intro: React.FC<IProps> = ({ scroll, initialNowPlaying }) => {
     const { x, y } = useMousePosition() as any
     return (
-        <div
-            className={tw(
-                'h-full flex flex-col items-center content-center justify-center gap-10'
-            )}
-        >
+        <div className={tw('flex flex-col content-center gap-10')}>
             {/* <TrackingLineGrid elements={7} pointerX={x} pointerY={y} /> */}
             <IntroTop
                 scroll={scroll}
