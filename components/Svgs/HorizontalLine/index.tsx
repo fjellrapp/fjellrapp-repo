@@ -19,6 +19,7 @@ const HorizontalLine: React.FC<IProps> = ({
     animate,
     scroll,
 }) => {
+    // Blurry foreground med former
     const hasAnimate = typeof animate !== 'undefined'
     const hasScroll = typeof scroll !== 'undefined'
 
@@ -35,27 +36,29 @@ const HorizontalLine: React.FC<IProps> = ({
         return 0
     }
     return (
-        <motion.svg
-            fill="none"
-            viewBox="0 0 151 16"
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <motion.g>
-                <motion.rect
-                    width={width && width}
-                    height={height && height}
-                    x={x && x}
-                    y={y && y}
-                    animate={{
-                        x: getAnimationHandler(),
-                    }}
-                    transition={{
-                        duration: 1,
-                    }}
-                    fill={fill ?? 'white'}
-                />
-            </motion.g>
-        </motion.svg>
+        <>
+            <motion.svg
+                fill="none"
+                viewBox="0 0 151 10"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <motion.g>
+                    <motion.rect
+                        width={width && width}
+                        height={height && height}
+                        x={x && x}
+                        y={y && y}
+                        animate={{
+                            x: getAnimationHandler(),
+                        }}
+                        transition={{
+                            duration: 1,
+                        }}
+                        fill={fill ?? 'white'}
+                    />
+                </motion.g>
+            </motion.svg>
+        </>
     )
 }
 

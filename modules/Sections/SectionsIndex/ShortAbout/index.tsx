@@ -12,9 +12,7 @@ const ShortAbout: React.FC<any> = () => {
     }, [])
     return (
         <section
-            className={tw(
-                'flex flex-col p-10 bg-white dark:bg-fantasticBg shadow-lg rounded-lg'
-            )}
+            className={tw('flex flex-col p-10 bg-white dark:bg-fantasticBg')}
         >
             <div className="flex flex-col gap-3 text-black dark:text-white place-items-end">
                 {heros?.length &&
