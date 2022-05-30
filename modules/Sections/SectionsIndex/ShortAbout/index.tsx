@@ -7,7 +7,6 @@ const ShortAbout: React.FC<any> = () => {
     useEffect(() => {
         getHeros().then((heros: IHeros[] | void | undefined) => {
             setHeros(heros)
-            console.log('heros', heros)
         })
     }, [])
     return (

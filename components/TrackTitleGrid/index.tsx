@@ -24,31 +24,44 @@ export const TrackTitleGrid = () => {
             return
         }
         const lengthDivision = data.recenttracks.track.length / 3
-        const resultArray: ITrack[][] = []
+        const uniqueSet = new Set()
+        data.recenttracks.track.forEach((t) => {
+            uniqueSet.add(t.name)
+        })
+        const trackArr = Array.from(uniqueSet) as string[]
+        const resultArray: string[][] = []
+        // data.recenttracks.track.sort((a, b) => {
+        //     return a.name.length < b.name.length ? -1 : 1
+        // })
         for (let i = 0; i < lengthDivision; i++) {
-            resultArray.push(data.recenttracks.track.slice(i * 3, (i + 1) * 3))
+            resultArray.push(trackArr.slice(i * 3, (i + 1) * 3))
         }
+
         return resultArray
     }
 
     return (
-        <div className="grid grid-rows-3 gap-5">
+        <div className="grid grid-rows-3 gap-5 p-10 border-t-2w-fit">
             {splitTrackGround()?.map((trackArray, index) => (
                 <div
                     key={index}
                     className={tw(`flex relative gap-5`)}
                     style={{
-                        left: `${index * 0.5}rem`,
+                        left: `${index % 2 === 0 ? 0 : 0}rem`,
                     }}
                 >
-                    {trackArray.map((track) => (
-                        <p
-                            key={track.name}
-                            className="text-sm font-bold text-white"
-                        >
-                            {track.name}
-                        </p>
-                    ))}
+                    {trackArray
+                        .sort((a, b) => {
+                            return a.length < b.length ? 1 : -1
+                        })
+                        .map((track, index) => (
+                            <p
+                                key={`${track}${index}`}
+                                className="text-sm font-medium tracking-widest text-black dark:text-white"
+                            >
+                                {track}
+                            </p>
+                        ))}
                 </div>
             ))}
         </div>
