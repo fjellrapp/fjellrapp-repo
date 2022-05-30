@@ -15,7 +15,8 @@ export const TrackTitleGrid = () => {
 
     useEffect(() => {
         if (data) {
-            console.log('dd', splitTrackGround())
+            console.log('d', splitTrackGround())
+            console.log("rebase test")
         }
     }, [data])
 
